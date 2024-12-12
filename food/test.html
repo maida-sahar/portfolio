@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Search</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom styles for better design */
+        .container {
+            margin-top: 20px;
+        }
+        
+        .card {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border: none;
+            transition: transform 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .card:hover {
+            transform: scale(1.05);
+        }
+        
+        .card img {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-body {
+            text-align: center;
+        }
+        
+        #not-found {
+            text-align: center;
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="text-center">Food Item Search</h1>
+        <input type="text" id="search-bar" class="form-control mb-4" placeholder="Search for a food item..." onkeyup="searchItem()">
+        
+        <div class="row" id="card-container">
+           
+        </div>
+    </div>
+
+    <div id="not-found"></div>
+
+    <script>
+
+var cardData = [
+            { "cardImage": "assets/images/1.jfif", "cardTitle": "Margherita Pizza",  "cardPrice": "Price: Rs. 550","cardDesc": `Classic Italian pizza topped with mozzarella, tomatoes, and fresh basil leaves for a perfect balance of flavors.
+` },
+            { "cardImage": "assets/images/2.jpg", "cardTitle": " Caesar Salad", "cardPrice": "Price: Rs. 350", "cardDesc": " Crisp romaine lettuce, croutons, and parmesan tossed in Caesar dressing, topped with grilled chicken." },
+            { "cardImage": "assets/images/3.jfif", "cardTitle": "BBQ", "cardPrice": "Price: Rs. 700", "cardDesc": " Juicy pork ribs glazed with a tangy BBQ sauce, served with coleslaw." },
+            { "cardImage": "assets/images/4.jpg", "cardTitle": "Butter Chicken", "cardPrice": "Price: Rs. 500", "cardDesc": "Juicy, marinated chicken cooked in a creamy tomato sauce, perfect with naan or rice." },
+            { "cardImage": "assets/images/5.jfif", "cardTitle": "Fish Tacon", "cardPrice": "Price: Rs. 320", "cardDesc": " Soft tacos filled with crispy fish, shredded cabbage, salsa, and tangy crema." },
+            
+
+            {
+                "cardImage": "assets/images/6.jpg",
+                "cardTitle": "Paneer Tikka",
+                "cardPrice": "Price: Rs. 280",
+                "cardDesc": " Cubes of paneer marinated in spices and grilled to perfection, served with mint chutney."
+
+            },
+
+            {
+                "cardImage": "assets/images/7.jfif",
+                "cardTitle": "Tandoori Chicken",
+                "cardPrice": "Price: Rs. 550",
+                "cardDesc": " Whole chicken marinated in spices and yogurt, grilled in a tandoor for a smoky flavor."
+
+            },
+
+            {
+                "cardImage": "assets/images/8.jfif",
+                "cardTitle": "Sushi Platter",
+                "cardPrice": "Price: Rs. 800",
+                "cardDesc": " A variety of sushi rolls and nigiri, featuring fresh fish, cucumber, avocado, and wasabi."
+
+            },
+
+            {
+                "cardImage": "assets/images/9.jfif",
+                "cardTitle": "Lamb Chops",
+                "cardPrice": "Price: Rs. 900",
+                "cardDesc": "Tender lamb chops marinated with herbs and spices, grilled to perfection."
+
+            },
+
+            {
+                "cardImage": "assets/images/10.jfif",
+                "cardTitle": "Ramen Bowl",
+                "cardPrice": "Price: Rs. 450",
+                "cardDesc": " A steaming bowl of Japanese ramen with noodles, broth, soft-boiled egg, and sliced pork."
+
+            },
+
+            {
+                "cardImage": "assets/images/11.jfif",
+                "cardTitle": "Vaggie Burger",
+                "cardPrice": "Price: Rs. 250",
+                "cardDesc": "A wholesome burger with a veggie patty, fresh lettuce, tomato, cheese, and special sauce."
+
+            },
+
+            {
+                "cardImage": "assets/images/12.jfif",
+                "cardTitle": "Pad Thai",
+                "cardPrice": "Price: Rs. 450",
+               
+                "cardDesc": "Stir-fried rice noodles with tofu, shrimp, peanuts, and a savory-sweet sauce."
+
+            },
+
+            {
+                "cardImage": "assets/images/13.jfif",
+                "cardTitle": "Chicken Shawarma",
+                "cardPrice": "Price: Rs. 150",
+                "cardDesc": "Slow-cooked, spiced chicken wrapped in pita with garlic sauce, pickles, and veggies."
+
+            },
+
+            {
+                "cardImage": "assets/images/14.jfif",
+                "cardTitle": "Chocolate lava Cake",
+                "cardPrice": "Price: Rs. 950",
+                "cardDesc": "Warm chocolate cake with a gooey center, served with vanilla ice cream."
+
+
+            },
+
+            {
+                "cardImage": "assets/images/15.jfif",
+                "cardTitle": "Tom Yum soap",
+                "cardPrice": "Price: Rs. 500",
+                "cardDesc": "Spicy and sour Thai soup with shrimp, mushrooms, lemongrass, and lime."
+
+            },
+
+            {
+                "cardImage": "assets/images/16.jfif",
+                "cardTitle": "Alfredo Pasta",
+                "cardPrice": "Price: Rs. 600",
+                "cardDesc": " Creamy Alfredo sauce mixed with perfectly cooked pasta."
+
+            },
+
+            {
+                "cardImage": "assets/images/17.jfif",
+                "cardTitle": "Chicken Biryani",
+                "cardPrice": "Price: Rs. 250",
+                "cardDesc": " Aromatic basmati rice layered with tender chicken, saffron, and spices, served with a side of raita."
+
+            },
+
+            {
+                "cardImage": "assets/images/18.jfif",
+                "cardTitle": "Greek salad",
+                "cardPrice": "Price: Rs. 250",
+                "cardDesc": " Fresh cucumbers, tomatoes, olives, and feta cheese tossed in olive oil and herbs."
+
+            },
+
+            {
+                "cardImage": "assets/images/19.jfif",
+                "cardTitle": "Beef Steaks",
+                "cardPrice": "Price: Rs. 850",
+                "cardDesc": "Succulent grilled beef steak served with garlic mashed potatoes and grilled veggies."
+
+            },
+
+            {
+                "cardImage": "assets/images/20.jfif",
+                "cardTitle": "Gulab Jamun",
+                "cardPrice": "Price: Rs. 250",
+                "cardDesc": "Soft, deep-fried dough balls soaked in a warm sugar syrup with cardamom."
+
+            },
+
+            {
+                "cardImage": "assets/images/pear.jpg",
+                "cardTitle": "pear",
+                "cardPrice": "Rs.2000",
+                "cardDesc": "Hello"
+
+            },
+
+            {
+                "cardImage": "assets/images/22.jfif",
+                "cardTitle": "apple",
+                "cardPrice": "Rs.2000",
+                "cardDesc": "Hello"
+
+            },
+
+            {
+                "cardImage": "assets/images/23.jfif",
+                "cardTitle": "orange",
+                "cardPrice": "Rs.2000",
+                "cardDesc": "Hello"
+
+            },
+
+            {
+                "cardImage": "assets/images/24.jfif",
+                "cardTitle": "banana",
+                "cardPrice": "Rs.2000",
+                "cardDesc": "Hello"
+
+            },
+
+            {
+                "cardImage": "assets/images/25.jfif",
+                "cardTitle": "mango",
+                "cardPrice": "Rs.2000",
+                "cardDesc": "Hello"
+
+            },
+
+            {
+                "cardImage": "assets/images/26.jfif",
+                "cardTitle": "grapes",
+                "cardPrice": "Rs.2000",
+                "cardDesc": "Hello"
+
+            },
+
+            {
+                "cardImage": "assets/images/27.jfif",
+                "cardTitle": "strawberry",
+                "cardPrice": "Rs.2000",
+                "cardDesc": "Hello"
+
+            },
+
+            {
+                "cardImage": "assets/images/28.jfif",
+                "cardTitle": "watermelon",
+                "cardPrice": "Rs.2000",
+                "cardDesc": "Hello"
+
+            },
+
+            {
+                "cardImage": "assets/images/29.jfif",
+                "cardTitle": "papaya",
+                "cardPrice": "Rs.2000",
+                "cardDesc": "Hello"
+
+            },
+
+            {
+                "cardImage": "assets/images/30.jfif",
+                "cardTitle": "lemon",
+                "cardPrice": "Rs.2000",
+                "cardDesc": "Hello"
+
+            },
+            // Add more items as needed
+        ];
+
+        
+
+        function displayAllItems() {
+            var cardContainer = document.getElementById("card-container");
+            // cardContainer.innerHTML = "";
+
+            cardData.forEach(item => {
+                var card = document.createElement("div");
+                card.classList.add("col-md-3", "mb-4"); 
+
+                card.innerHTML = `
+                    <div class="card">
+                        <img src="${item.cardImage}" class="card-img-top" alt="${item.cardTitle}">
+                        <div class="card-body">
+                            <h5 class="card-title">${item.cardTitle}</h5>
+                            <p class="card-text">${item.cardDesc}</p>
+                            <p class="card-text">${item.cardPrice}</p>
+                            <a href="#" class="btn btn-primary">Buy Now</a>
+                        </div>
+                    </div>
+                `;
+                cardContainer.appendChild(card);
+            });
+        }
+
+        function searchItem() {
+            var searchTerm = document.getElementById("search-bar").value.toLowerCase();
+            const cardContainer = document.getElementById("card-container");
+            const notFound = document.getElementById("not-found");
+
+            cardContainer.innerHTML = "";
+            notFound.innerHTML = "";
+
+            var filteredItems = cardData.filter(item => item.cardTitle.toLowerCase().includes(searchTerm));
+
+            if (filteredItems.length > 0) {
+                filteredItems.forEach(item => {
+                    const card = document.createElement("div");
+                    card.classList.add("col-md-3", "mb-4");
+
+                    card.innerHTML = `
+                        <div class="card">
+                            <img src="${item.cardImage}" class="card-img-top" alt="${item.cardTitle}">
+                            <div class="card-body">
+                                <h5 class="card-title">${item.cardTitle}</h5>
+                                <p class="card-text">${item.cardDesc}</p>
+                                <a href="#" class="btn btn-primary">Buy Now</a>
+                            </div>
+                        </div>
+                    `;
+                    cardContainer.appendChild(card);
+                });
+            } else {
+                notFound.innerHTML = "Not Found";
+            }
+        }
+
+        window.onload = displayAllItems;
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

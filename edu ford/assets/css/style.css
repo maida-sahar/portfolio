@@ -1,0 +1,307 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.header{
+    min-height:100vh ;
+    width: 100%;
+    background-image: linear-gradient(rgba(4, 9, 30, 0.7),rgba(4, 9, 30, 0.7)) , url(../img/banner.png);
+    background-size: cover;
+    position: relative;
+    background-position: cover;
+}
+nav{
+    display: flex;
+    padding: 2% 6%;
+    align-items: center;
+    justify-content: space-between;
+
+}
+nav>img{
+    width: 150px;
+}
+.navlinks{
+    flex: 1;
+    text-align: right;
+}
+.navlinks>ul>li{
+    display: inline-block;
+    list-style: none;
+    padding: 30px 20px;
+    position: relative;
+
+}
+.navlinks>ul>li>a{
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+}
+.navlinks>ul>li::after{
+    content: '';
+    width: 0%;
+    height: 2px;
+    margin: auto;
+    background: #f44336;
+    display: block;
+    transition: 0.5s;
+}
+.navlinks>ul>li:hover::after{
+    width: 100%;
+}
+
+.text{
+    text-align: center;
+    color: #fff;
+    padding: 70px 0;
+}
+.text>h1{
+    font-size: 62px;
+}
+.text>p{
+    font-size: 14px;
+    padding: 30px 0;
+}
+.hero-btn{
+    border: 1px solid #fff;
+    display: inline-block;
+    text-decoration: none;
+    color: #fff;
+    padding: 17px 30px;
+    font-size: 18px;
+    position: relative;
+    background: transparent;
+    cursor: pointer;
+}
+.hero-btn:hover{
+    background-color: #f44336;
+    transition: 0.5s;
+}
+.course{
+    text-align: center;
+    position: relative;
+}
+.course>h3{
+    font-size: 50px;
+    margin: 30px 0;
+}
+p{
+    font-size: 18px;
+    font-weight: 200px;color: rgb(138, 131, 131);
+    text-align: center;
+}
+
+.row{
+    display: flex;
+    padding: 30px 50px;
+    margin: 30px 30px ;
+    justify-content: space-between;
+}
+
+.coursecol{
+    border: 1px solid rgb(240, 1191, 191);
+    background: rgb(240, 214, 214);
+    margin:10px 60px;
+    padding: 20px 12px;
+    font-size: 18px;
+    border-radius: 10%;
+    flex-basis: 30%;
+    box-sizing: border-box;
+    transition: 0.5s;
+    
+}
+h3{
+    text-align: center;
+    padding: 12px 12px;
+    font-size: 30px;
+    font-weight: 600;
+    margin: 15px 0;
+}
+.coursecol:hover{
+    box-shadow: 0 0 20px 0px rgb(138, 131, 131);
+}
+
+.campus{
+    text-align: center;
+    margin: auto;
+    padding-top: 50px ;
+    width: 80%;
+}
+
+/* .row{
+    align-items: center;
+    text-align: center;
+    display: flex;
+    width: 100%;
+} */
+.campuscol{
+   flex-basis: 32%;
+   position: relative;
+   border-radius: 10px;
+   margin-bottom: 30px;
+   overflow: hidden;
+}
+.campuscol>img{
+    width: 100%;
+    
+}
+.layer{
+    /* background: rgba(226, 0, 0, 0.7); */
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    /* left: 0; */
+}
+.layer:hover{
+    background:  rgba(245, 122, 122, 0.678);
+
+}
+
+.layer>h3{
+    width: 100%;
+    bottom: 0;
+    color: #fff;
+    position: absolute;
+    transform: translateX(-50%);
+    left: 50%;
+    opacity: 0;
+    transition: 0.5s;
+}
+.layer:hover>h3{
+    bottom: 49%;
+    opacity: 1;
+}
+.facilitiescol>img{
+    width: 100%;
+    /* height: 350px; */
+    border-radius: 10%;
+    /* margin: 50px 0px;
+    padding: 20px 20px; */
+    
+    
+}
+.facilities{
+    text-align: center;
+    width: 80%;
+    margin-left: 130px;
+}
+.facilitiescol{
+    border-radius: 10%;
+    flex-basis: 31%;
+    /* text-align: left; */
+    margin-bottom: 5%;
+}
+.facilitiescol>h3{
+    text-align: left;
+    margin-bottom: 26px;
+    padding-top: 15px;
+}
+.facilitiescol>p{
+    /* padding: 15px; */
+    text-align: left;
+}
+
+.testimonials{
+    width: 80%;
+    text-align: center;
+    margin-left: 130px;
+
+}
+.testimonialcol>img{
+    height: 40px;
+    border-radius: 50%;
+    margin-left: 5px;
+    margin-right: 30px;
+}
+
+.testimonialcol{
+flex-basis: 44%;
+border-radius: 10px;
+text-align: left;
+background-color: rgb(236, 190, 190);
+margin-bottom: 5%;
+display: flex;
+padding: 25px;
+cursor: pointer;
+
+}
+.contact{
+    background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url(../img/banner2.jpg);
+    height: 40vh;
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    color: #fff;
+    margin: 100px auto;
+    text-align: center;
+    padding: 100px 0;
+    
+}
+.contact>h1{
+    font-size: 50px;
+    padding-bottom: 40px;
+    
+}
+.footer{
+    text-align: center;
+    padding: 50px 40px;
+}
+.made{
+    padding-top: 30px;
+}
+.footer>h1{
+    padding-bottom: 30px;
+}
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

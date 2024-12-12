@@ -1,0 +1,36 @@
+.image{
+    width: 200px ;
+    height: 300px;
+}
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+#search-bar {
+    margin: 20px;
+    padding: 10px;
+    width: 300px;
+}
+/* #card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+} */
+/* .card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    margin: 10px;
+    width: 200px;
+    text-align: center;
+}
+.card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+} */
+#not-found {
+    color: red;
+    font-size: 18px;
+    margin-top: 20px;
+}

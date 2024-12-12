@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>DNBC News Reporter - HomePage</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@100;600;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/my.css">
+</head>
+
+<body>
+    <div id="spinner"
+        class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" role="status"></div>
+    </div>
+    <header id="navbar"></header>
+    <div id="features"></div>
+
+    <div class="container-fluid " data-aos="fade-up">
+        <div class="container py-5">
+            <div class="row g-4">
+                <h2 class="text-center text-dark">Top News</h2>
+                <div class="col-lg-7 col-xl-8 mt-0" id="news-container">
+                </div>
+                <div class="col-lg-5 col-xl-4">
+                    <div class="bg-light rounded p-4 pt-0">
+                        <div class="row g-4">
+                            <div class="col-12">
+                                <div class="rounded overflow-hidden">
+                                    <img src="img/SportNews/3.jpg" class="img-fluid rounded img-zoomin w-100"
+                                        alt="">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="d-flex flex-column">
+                                    <a href="#" class="h4 mb-2"> IPL auction records tumble as Pant and Iyer snapped up</a>
+                                    <p class="fs-5 mb-0"><i class="fa fa-clock"> 09 minute read</i> </p>
+                                    <p class="fs-5 mb-0"><i class="fa fa-eye"> 2.4k Views</i></p>
+                                </div>
+                            </div>
+                            <div class="col-12" id="dynamic-news-container">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container-fluid  my-5"
+        style="background: linear-gradient(rgba(202, 203, 185, 1), rgba(202, 203, 185, 1));">
+        <div class="container">
+            <div class="row g-4 align-items-center">
+                <div class="col-lg-7">
+                    <h1 class="mb-4 text-primary">DNBC</h1>
+                    <h1 class="mb-4">Get Every Weekly Updates</h1>
+                    <p class="text-dark mb-4 pb-2">We Provide the Best News, As It Happens,
+                        Stay Informed with the Best, Most Reliable News,
+                        Your Trusted Source for the Best News, Always On Time,
+                        Delivering the Best News, Straight to You,
+                        Where Accuracy Meets the Best News, Every Day,
+                        Best News, Best Coverage – Only With Us,
+                        Your Go-To Place for the Latest and Best News!"
+                    </p>
+
+                </div>
+                <div class="col-lg-5">
+                    <div class="rounded">
+                        <img src="img/banner-img.jpg" class="img-fluid rounded w-100 rounded" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    
+<footer id="footer" data-aos="fade-up">
+
+    </footer>
+    <a href="#" class="btn btn-primary border-2 border-white rounded-circle back-to-top"><i
+            class="fa fa-arrow-up"></i></a>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script src="js/main.js"></script>
+    <script src="js/my.js"></script>
+    <script>
+        AOS.init();
+    </script>
+    <script src="js/NewsData.js"></script>
+    <script>
+        function renderNews(newsData) {
+            const newsContainer = document.getElementById("news-container");
+            const newsContainers = document.getElementById("dynamic-news-container");
+
+            newsData.news.forEach(news => {
+                const newsElement = document.createElement("div");
+                newsElement.classList.add("position-relative", "overflow-hidden", "rounded");
+                newsElement.innerHTML = `
+            <div class="position-relative overflow-hidden rounded">
+                <img src="${news.image}" class="img-fluid rounded img-zoomin w-100" alt="">
+                <div class="d-flex justify-content-center px-4 position-absolute flex-wrap" style="bottom: 10px; left: 0;">
+                    <a href="#" class="text-white me-3 link-hover"><i class="fa fa-clock"></i> ${news.read_time}</a>
+                    <a href="#" class="text-white me-3 link-hover"><i class="fa fa-eye"></i> ${news.views}</a>
+                    <a href="#" class="text-white link-hover"><i class="fa fa-arrow-up"></i> ${news.shares}</a>
+                </div>
+            </div>
+            <div class="border-bottom py-3">
+                <span class="text-dark mb-0 link-hover"><h5 style='color:#5485b1; cursor:pointer'>${news.title}</h5></span>
+            </div>
+            <p class="mt-3 mb-4">${news.smallsummary}<a href="article.html?id=${news.id}">Read More...</a></p>
+        `;
+
+                newsContainer.appendChild(newsElement);
+            });
+
+
+            newsData.news.forEach(news => {
+                const newsElement = document.createElement("div");
+                newsElement.classList.add("row", "g-4", "align-items-center", "mt-1");
+
+                newsElement.innerHTML = `
+            <div class="col-5">
+                <div class="overflow-hidden rounded">
+                    <img src="${news.image}" class="img-zoomin img-fluid rounded w-100" alt="${news.title}">
+                </div>
+            </div>
+            <div class="col-7">
+                <div class="features-content d-flex flex-column">
+                    <a href="News.html?category=${news.category}" class="h6">${news.category}</a>
+                    <small><i class="fa fa-clock"></i> ${news.read_time}</small>
+                    <small><i class="fa fa-eye"></i> ${news.views}</small>
+                </div>
+            </div>
+        `;
+
+                newsContainers.appendChild(newsElement);
+            });
+        }
+
+        renderNews(newsData);
+    </script>
+
+
+</body>
+
+</html>
